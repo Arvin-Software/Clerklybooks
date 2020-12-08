@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1"
+	 id="svg22" inkscape:version="0.92.2 (5c3e80d, 2017-08-06)" sodipodi:docname="logo.svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+	 style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;}
+	.st1{display:inline;}
+	.st2{fill:#FFFFFF;}
+	.st3{fill:none;}
+	.st4{fill:#007AFF;}
+	.st5{fill:#FF000D;}
+	.st6{fill:#FF0000;}
+</style>
+<sodipodi:namedview  bordercolor="#666666" borderopacity="1" gridtolerance="10" guidetolerance="10" id="namedview24" inkscape:current-layer="svg22" inkscape:cx="256" inkscape:cy="256" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-height="1017" inkscape:window-maximized="1" inkscape:window-width="1920" inkscape:window-x="1358" inkscape:window-y="-8" inkscape:zoom="0.4609375" objecttolerance="10" pagecolor="#ffffff" showgrid="false">
+	</sodipodi:namedview>
+<g id="Layer_2" class="st0">
+	<g id="g8" class="st1">
+		<path id="path4" class="st2" d="M256,505.5c-66.6,0-129.3-26-176.4-73.1S6.5,322.6,6.5,256s26-129.3,73.1-176.4S189.4,6.5,256,6.5
+			s129.3,26,176.4,73.1s73.1,109.8,73.1,176.4s-26,129.3-73.1,176.4S322.6,505.5,256,505.5z"/>
+		<path id="path6" d="M256,7c33.6,0,66.2,6.6,96.9,19.6C382.6,39.1,409.2,57.1,432,80c22.9,22.9,40.8,49.5,53.4,79.1
+			c13,30.7,19.6,63.3,19.6,96.9s-6.6,66.2-19.6,96.9c-12.5,29.7-30.5,56.3-53.4,79.1c-22.9,22.9-49.5,40.8-79.1,53.4
+			c-30.7,13-63.3,19.6-96.9,19.6s-66.2-6.6-96.9-19.6c-29.7-12.5-56.3-30.5-79.1-53.4c-22.9-22.9-40.8-49.5-53.4-79.1
+			C13.6,322.2,7,289.6,7,256s6.6-66.2,19.6-96.9C39.1,129.4,57.1,102.8,80,80s49.5-40.8,79.1-53.4C189.8,13.6,222.4,7,256,7 M256,6
+			C117.9,6,6,117.9,6,256s111.9,250,250,250s250-111.9,250-250S394.1,6,256,6L256,6z"/>
+	</g>
+</g>
+<g id="Layer_1">
+	<path id="rect11" class="st3" d="M70.7,54H464v404H70.7V54z"/>
+	<g id="text13" transform="matrix(1 0 0 1 112.6665 412.5)">
+		<path id="path4525" class="st4" d="M266.1-310.6H136.2V10H87.9v-320.6H-42v-43h308.1V-310.6z"/>
+	</g>
+</g>
+<g id="Layer_4" transform="matrix(1.0210971,0,0,1.2259688,-13.753591,-87.060908)">
+	<polygon id="polygon16" class="st5" points="326.1,415.6 468.2,303.1 479.6,242.4 325.9,357.7 326.1,415.8 	"/>
+</g>
+<g id="Layer_3" transform="matrix(1.283126,0,0,1.283126,-71.292713,-192.49995)">
+	<polyline id="polyline19" class="st6" points="304.2,479.5 245.5,425.2 274.4,396.8 304.2,420.9 304.2,471.3 	"/>
+</g>
+</svg>
