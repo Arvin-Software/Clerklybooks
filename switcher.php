@@ -141,7 +141,7 @@
                 </div>
         </div>
     </div>
-    <hr>
+    <!-- <hr>
     <div class="row  fade-in" style="padding-left: 5%; padding-right: 5%;">
         <div class="col-lg-6 text-left" style="padding-bottom: 2%; padding-right: 5%; padding-top: 1%;">
                 Money need to be paid by customers this month
@@ -163,7 +163,7 @@
                <p class="text-left">Total : &#8377; 1000 | Paid : &#8377; 500 | Balance : &#8377; 500 | Total tax : &#8377; 380.99 | Balance : &#8377; 500.99</p> 
               
         </div>
-    </div>
+    </div> -->
     
     
 </div>

@@ -29,7 +29,7 @@
     </style>
 </head>
 <body class="container-fluid border" style="height: 1380px;" onload="sumx();">
-<h3 class="text-center" style="margin: 5% 0% 5% 0%;"><?php echo $_GET['stat']; ?></h3>
+<h3 class="text-center" style="margin: 1% 0% 1% 0%;"><?php echo $_GET['stat']; ?></h3>
 <?php
             session_start();
             include '../../classes/khatral.php';
@@ -74,20 +74,23 @@
                 ':id'=>$_GET['id']
             ));
             foreach($ret as $pi){
-                $pono = $pi['sono'];
+                
                 $podate = $pi['dt'];
                 $podate = date("d-m-Y", strtotime($podate));
                 $posup = $pi['custnm'];
-                if($p['stat'] != 'Invoice'){
+                if($pi['stat'] != 'Invoice'){
                     $valid = $pi['validity'];
                     $valid = date("d-m-Y", strtotime($valid));
+                    $pono = 'Quote No : ' . $pi['sono'];
+                }else{
+                    $pono = 'Invoice No : ' . $pi['invno'];
                 }
             }
         ?>
     <table class="table">
         <tr>
         <td>
-        <h5  class="">Number : <?php echo $pono; ?></h5>
+        <h5  class=""><?php echo $pono; ?></h5>
             <h6>Date : <?php echo $podate; ?></h6>
             <?php
                 if($valid != ''){ echo 'Validity : ' . $valid; }
@@ -100,12 +103,12 @@
         </td>
         <td>
             
-            <img src="../../images/d/<?php echo $logo; ?>" class="float-right bg-white rounded-circle" style="width: 256px; height: 256px; margin-top: 12%;">  
+            <img src="../../images/d/<?php echo $logo; ?>" class="float-right bg-white rounded-circle" style="width: 256px; height: 256px; margin-top: 2%;">  
         </td>
     </tr>
     <tr>
         <td>
-            <h3>Customer Info</h3>
+            <h5>Customer Info</h5>
             <?php
                 $res = khatral::khquery('SELECT * FROM cont_list WHERE cont_nm=:nm AND acc=:acc', array(
                     ':nm'=>$posup,
@@ -126,8 +129,8 @@
             <th>HSN Code</th>
             <th>Quantity</th>
             <th>Rate</th>
-            <th>CGST %</th>
-            <th>SGST/IGST %</th>
+            <th>SGST %</th>
+            <th>CGST/IGST %</th>
             <th>Amount</th>
         </tr>
         <?php
@@ -136,6 +139,7 @@
             ));
             $count = 0;
             $total = 0;
+            $tax = 0;
             foreach($res as $p){
                 $count += 1;
                 echo '<tr><td>' . $count . '</td>';
@@ -145,8 +149,16 @@
                 echo '<td>' . $p['rte'] . '</td>';
                 echo '<td>' . $p['cgst'] . '</td>';
                 echo '<td>' . $p['sgst'] . '</td>';
-                echo '<td class="text-right">' . $p['tot'] . '</td></tr>';
-                $total += $p['tot'];
+                $tax += ((float)$p['quant'] * (float)$p['rte']) * ((float)$p['cgst'] /100);
+                $cgst = ((float)$p['quant'] * (float)$p['rte']) * ((float)$p['cgst'] /100);
+                // echo '<td>' . $cgst . '</td>';
+                $tax += ((float)$p['quant'] * (float)$p['rte']) * ((float)$p['sgst'] /100);
+                $sgst = ((float)$p['quant'] * (float)$p['rte']) * ((float)$p['sgst'] /100);
+                // echo '<td>' . $sgst . '</td>';
+                // echo '<td>' . $tax . '</td>';
+                $sub = ((float)$p['quant'] * (float)$p['rte']);
+                echo '<td class="text-right">' . $sub . '</td></tr>';
+                $total += $sub;
             }
         ?>
        
@@ -163,6 +175,35 @@
         $discount = $p['discounts'];
     }
     ?>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+         <td class="">
+            <b>Sub Total</b>
+            </td>
+            <td class="text-right">
+                <?php echo $total; ?>
+            </td>
+        </tr>
+     <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+         <td class="">
+            <b>GST</b>
+            </td>
+            <td class="text-right">
+                <?php echo $tax; ?>
+            </td>
+        </tr>
+        
      <tr>
         <td></td>
         <td></td>
@@ -202,23 +243,19 @@
             <b>Grand total</b>
             </td>
             <td class="text-right">
-            <?php echo $total + $fright; ?>
+            <?php echo $total + $tax + $fright; ?>
             </td>
         </tr>
-        <input type="text" name="tot1" id="tot1" value="<?php echo $total + $fright; ?>" style="display: none;">
+        <input type="text" name="tot1" id="tot1" value="<?php echo $total + $tax + $fright; ?>" style="display: none;">
     </table>
     <div class="text-left">
             <p>
-					<h5>Invoice Value In Words</h5>
+					<!-- <h5>Invoice Value In Words</h5> -->
 					<br />
-					<label id="mytext1" name="mytext1"></label>
+					<!-- <label id="mytext1" name="mytext1"></label> -->
             </p>
     </div>
-    <div class="float-right">
-        <h5>For <?php echo $mailnm; ?></h5><br />
-        <h6>Authorized Signatory</h6>
-    </div>
-    <table class="table bottom" style="position: relative; margin-top: 20%; bottom: 0;">
+    <table class="table bottom" style="">
         <tr>
             <td>
                 <h5>Terms and Conditions</h5>
@@ -226,6 +263,11 @@
             </td>
         </tr>
     </table>
+    <div class="float-right">
+        <h5>For <?php echo $mailnm; ?></h5><br />
+        <h6>Authorized Signatory</h6>
+    </div>
+    
 </body>
 <script>
 						function sumx() {

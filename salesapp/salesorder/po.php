@@ -80,9 +80,13 @@
                     echo ' <tr class="">
                     <td>' . $count . '</td>
                     <td class="">' . $p['dt'] . '</td>
-                    <td class="">' . $p['custnm'] . '</td>
-                    <td class="">' . $p['sono'] . '</td>
-                    <td><h3><span class="badge badge-primary">' . $p['stat'] . '</span></h3></td>';
+                    <td class="">' . $p['custnm'] . '</td>';
+                    if($p['stat'] != 'Invoice'){
+                        echo'<td class="">' . $p['sono'] . '</td>';
+                    }else{
+                        echo'<td class="">' . $p['invno'] . '</td>';
+                    }
+                    echo '<td><h3><span class="badge badge-primary">' . $p['stat'] . '</span></h3></td>';
                     if($p['stat'] == "Invoice"){
                         echo '<td><a href="view.php?id=' . $p['entryid'] . '&stat=' . $p['stat'] . '" style="" class="btn btn-outline-success bor-none"><i class="far fa-eye"></i></a><a href="po.php?id=' . $p['entryid'] . '&stat=' . $p['stat'] . '&typ=dc" style="" class="btn btn-outline-success bor-none">Generate / View DC</a></td>';
                     }else{

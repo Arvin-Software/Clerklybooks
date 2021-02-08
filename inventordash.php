@@ -156,12 +156,12 @@
                     <a class="dropdown-item" href="#"><i class="far fa-user"></i>&nbsp;&nbsp;&nbsp;My profile</a>
                     <a class="dropdown-item" href="switcher.php"><i class="far fa-arrow-alt-circle-left"></i>&nbsp;&nbsp;&nbsp;Back</a>
                 </div>
-                <hr>
+                <!-- <hr>
                 Money need to be paid to suppliers this month
                 <div class="progress fade-in" style="height:20px;">
                     
                     <div class="progress-bar bg-warning" style="width:40%"></div>
-                </div>
+                </div> -->
             </div>
             <!-- <div class="container-fluid bg-white border d-none d-lg-block" style="padding-top: 2%; padding-bottom: 2%; width: 98%;">
                
