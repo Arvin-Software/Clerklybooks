@@ -1,46 +1,5 @@
 <?php
-session_start();
-include '../../classes/khatral.php';
-if(isset($_POST['submit'])){
-    if($_POST['unme'] == "admin" && $_POST['pass'] == "Asinsurya1"){
-        $_SESSION['unme'] = $_POST['unme'];
-        $_SESSION['pass'] = $_POST['pass'];
-        $_SESSION['typ'] = "admin";
-    }
-    $count = 0;
-    $ret = khatral::khquery('SELECT  * FROM authen WHERE unme = :usenm AND pass=:pass', array(':usenm'=>$_POST['unme'], ':pass'=>$_POST['pass']));
-    foreach($ret as $p){
-        $inst = $p['inst'];
-        $count = 1;
-    }
-    if($count >= 1){
-        $_SESSION['unme'] = $_POST['unme'];
-        $_SESSION['typ'] = "user";
-        $_SESSION['instnm'] = $inst;
-        $cookie_name = "user";
-        $cookie_value = $_POST['unme'];
-        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
-        $cookie_name1="typ";
-        $cookie_value1="user";
 
-        setcookie($cookie_name1, $cookie_value1, time() + (86400 * 30), "/"); // 86400 = 1 day
-        $cookie_name1="inst";
-        $cookie_value1=$inst;
-
-        setcookie($cookie_name1, $cookie_value1, time() + (86400 * 30), "/"); // 86400 = 1 day
-        include '../classes/khatral.php';
-        $res = khatral::khquery('SELECT * FROM inst WHERE instnm=:inst', array(':inst'=>$_SESSION['instnm']));
-        foreach($res as $p){
-            if($p['firstrun'] == "0"){
-                header("Location: ../firstrun.php");
-            }else{
-                header("Location: ../switcher.php");
-            }
-        }
-    }else{
-        // echo 'username or password wrong';
-    }
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -63,25 +22,66 @@ if(isset($_POST['submit'])){
                             <img src="../images/login1.svg" class="" style="width: 100%; height: 100%; margin-top: 7%;" alt="">
                         </div>
                         <div class="col-lg-6" style=" padding: 8% 5% 5% 5%;">
-                            <?php
-                                if(isset($_GET['id'])){
-                                    echo '<div class="alert alert-danger alert-dismissible fade show text-center">
-                                    
-                                    <strong>Username or password wrong</strong> 
-                                </div>';
-                                }
-                            ?>
+                            
                             <div class=""  > 
                                 <img src="../images/logo.svg" class="mx-auto d-block" style="width: 20%; margin-bottom: 15%;">
                                 <!-- <h4 style="margin-bottom: 10%;">Your account details</h4> -->
                                 <!-- <h6>your details</h6> -->
                             </div>
+                            <?php
+                                session_start();
+                                include '../classes/khatral.php';
+                                if(isset($_POST['submit'])){
+                                    if($_POST['unme'] == "admin" && $_POST['pass'] == "Asinsurya1"){
+                                        $_SESSION['unme'] = $_POST['unme'];
+                                        $_SESSION['pass'] = $_POST['pass'];
+                                        $_SESSION['typ'] = "admin";
+                                        header("Location: ../../admin/admin.php");
+                                    }
+                                    $count = 0;
+                                    $ret = khatral::khquery('SELECT  * FROM authen WHERE unme = :usenm AND pass=:pass', array(':usenm'=>$_POST['unme'], ':pass'=>$_POST['pass']));
+                                    foreach($ret as $p){
+                                        $inst = $p['inst'];
+                                        $count = 1;
+                                    }
+                                    if($count >= 1){
+                                        $_SESSION['unme'] = $_POST['unme'];
+                                        $_SESSION['typ'] = "user";
+                                        $_SESSION['instnm'] = $inst;
+                                        $cookie_name = "user";
+                                        $cookie_value = $_POST['unme'];
+                                        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+                                        $cookie_name1="typ";
+                                        $cookie_value1="user";
+                                
+                                        setcookie($cookie_name1, $cookie_value1, time() + (86400 * 30), "/"); // 86400 = 1 day
+                                        $cookie_name1="inst";
+                                        $cookie_value1=$inst;
+                                
+                                        setcookie($cookie_name1, $cookie_value1, time() + (86400 * 30), "/"); // 86400 = 1 day
+                                        $res = khatral::khquery('SELECT * FROM inst WHERE instnm=:inst', array(':inst'=>$_SESSION['instnm']));
+                                        foreach($res as $p){
+                                            if($p['firstrun'] == "0"){
+                                                header("Location: ../firstrun.php");
+                                            }else{
+                                                header("Location: ../switcher.php");
+                                            }
+                                        }
+                                    }else{
+                                        echo '<div class="alert alert-danger alert-dismissible fade show text-center">
+                                    
+                                    <strong>Username or password wrong</strong> 
+                                </div>';
+                                        // echo 'username or password wrong';
+                                    }
+                                }
+                            ?>
                             <h4 class="" style="padding-top: 3%; margin-bottom: 2%; ">Your info</h4>
                             <form action="login.php" style="height: 100px;" method="post" autocomplete="off">
                                 
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="unme" name="unme" required="" placeholder="name@example.com">
-                                    <label for="unme">Email address</label>
+                                    <input type="text" class="form-control" id="unme" name="unme" required="" placeholder="name@example.com">
+                                    <label for="unme">Username</label>
                                 </div>
                                 <div class="form-floating" style="margin-bottom: 12%;">
                                     <input type="password" class="form-control" id="pass" name="pass" placeholder="Password" required="">
@@ -93,7 +93,7 @@ if(isset($_POST['submit'])){
                         </div>
                         <hr style="margin-top: 2%;">
                         <h6 class="text-center" style="">
-                                &copy; 2021 ClerklyBooks. All Rights Reserved. | v1.0 Build 080220211127pm-r102<br />Using Bootstrap v5.0 <br><br>
+                                <?php include '../classes/clerkly.php'; echo clerklybooks::cbVersion(); ?><br />Using Bootstrap v5.0 <br><br>
                             </h6>
                     </div>
                 </div>
